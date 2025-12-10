@@ -1,0 +1,74 @@
+1. What is an Array? Why is it Important?
+Definition:
+An array is a data structure that stores a fixed-size sequence of elements of the same type, placed in a contiguous block of memory.
+
+Why is it important?
+
+Arrays allow you to store and access data efficiently using an index.
+They are the foundation for many other data structures (like lists, stacks, queues).
+Arrays are used everywhere: storing lists of items, processing data, implementing algorithms, etc.
+
+Example:
+let arr = [10, 20, 30, 40, 50];
+console.log(arr[2]); // Output: 30
+
+
+2. Memory Representation of Arrays
+Arrays are stored in contiguous memory locations.
+Each element is placed right after the previous one.
+The address of any element can be calculated as:
+address_of_element = base_address + (index * size_of_element)
+
+Why does this matter?
+Accessing any element by index is very fast (constant time, O(1)), because you can jump directly to its memory location.
+
+Visual:
+Index:   0    1    2    3    4
+Value:  10   20   30   40   50
+Memory: |10|20|30|40|50|
+
+3. Common Operations
+a) Traversal
+Visiting each element in the array, usually with a loop.
+
+Example:
+for (let i = 0; i < arr.length; i++) {
+  console.log(arr[i]);
+}
+Time Complexity: O(n) (must visit every element)
+
+b) Insertion
+At the end:
+Just add the element (if there’s space).
+Time Complexity: O(1)
+
+At the beginning or middle:
+Need to shift elements to make space.
+Time Complexity: O(n) (in the worst case, all elements shift)
+
+Example (insert at index 2):
+// arr = [10, 20, 30, 40, 50]
+// Insert 25 at index 2
+arr.splice(2, 0, 25); // [10, 20, 25, 30, 40, 50]
+
+c) Deletion
+At the end:
+Just remove the last element.
+Time Complexity: O(1)
+At the beginning or middle:
+Need to shift elements to fill the gap.
+Time Complexity: O(n)
+
+Example (delete at index 2):
+// arr = [10, 20, 30, 40, 50]
+// Remove element at index 2
+arr.splice(2, 1); // [10, 20, 40, 50]
+
+4. Time Complexity of Array Operations
+Operation	Time Complexity	Notes
+Access by index	O(1)	Direct access
+Traversal	O(n)	Must visit every element
+Insertion (end)	O(1)	If space is available
+Insertion (start/mid)	O(n)	Need to shift elements
+Deletion (end)	O(1)	Remove last element
+Deletion (start/mid)	O(n)	Need to shift elements
