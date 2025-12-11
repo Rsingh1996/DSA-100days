@@ -1,0 +1,134 @@
+
+Prefix Sum
+What is it?
+Imagine you have a row of coins, and you want to know how much money you have if you pick up the first few coins, or any group of coins in a row. Instead of counting them every time, you keep a notebook where you write down the total after each coin you pick up. This notebook is your prefix sum array.
+
+In programming:
+A prefix sum array helps you quickly find the sum of any part of an array, without adding up the numbers every time.
+
+Why use it?
+Speed: If you need to answer many “what’s the sum from position X to Y?” questions, prefix sum lets you do it instantly.
+Efficiency: Saves time, especially for big arrays or lots of queries.
+How does it work? (The Formula)
+Let’s say your array is called arr.
+
+Start with a new array called prefix.
+The first value is 0 (for easier math).
+For each position i,
+prefix[i] = prefix[i-1] + arr[i-1] (if prefix starts at 0 index) or
+prefix[i] = prefix[i-1] + arr[i] (if prefix starts at 1 index)
+Example:
+
+let arr = [2, 4, 6, 8];
+let prefix = [0]; // Start with 0 for easier math
+
+for (let i = 0; i < arr.length; i++) {
+  prefix.push(prefix[i] + arr[i]);
+}
+// prefix = [0, 2, 6, 12, 20]
+
+Step by step:
+
+prefix[0] = 0
+prefix[1] = prefix[0] + arr[0] = 0 + 2 = 2
+prefix[2] = prefix[1] + arr[1] = 2 + 4 = 6
+prefix[3] = prefix[2] + arr[2] = 6 + 6 = 12
+prefix[4] = prefix[3] + arr[3] = 12 + 8 = 20
+So, prefix = [0, 2, 6, 12, 20]
+
+How do you use it? (Range Sum Queries)
+If you want the sum from index l to r (inclusive),
+Sum = prefix[r+1] - prefix[l]
+
+Example:
+Sum from index 1 to 3 (4 + 6 + 8):
+
+prefix[4] - prefix[1] = 20 - 2 = 18
+Applications
+Range sum queries: Quickly find the sum of any part of an array.
+Subarray problems: Find subarrays with a certain sum, or check if a subarray sum is even/odd, etc.
+Visual Analogy
+Think of prefix sum as a running total in your notebook. If you want to know how much you collected between two points, just subtract the earlier total from the later one!
+
+
+Sliding Window
+What is it?
+Imagine you have a long row of windows on a train. You can only look through a few windows at a time (say, 3 in a row). As the train moves, your “window” slides forward, always looking at the next group of 3.
+
+In programming:
+A sliding window is a way to look at a part of an array (a “window”) and move that window across the array to process or check something about each group.
+
+Types of Sliding Window
+1. Fixed-size Window
+The window always covers the same number of elements.
+Example: Always looking at 3 numbers at a time.
+Use case:
+Find the maximum sum of any 3 consecutive numbers.
+
+Step-by-step Example:
+
+Let’s use arr = [1, 3, 2, 5, 1, 1, 2, 3] and window size k = 3.
+
+First window: 1 + 3 + 2 = 6
+Next window: 3 + 2 + 5 = 10
+Next window: 2 + 5 + 1 = 8
+Next window: 5 + 1 + 1 = 7
+Next window: 1 + 1 + 2 = 4
+Next window: 1 + 2 + 3 = 6
+Maximum sum is 10 (from [3, 2, 5]).
+
+Code:
+let arr = [1, 3, 2, 5, 1, 1, 2, 3];
+let k = 3;
+let maxSum = 0;
+
+// Calculate sum of first window
+let windowSum = 0;
+for (let i = 0; i < k; i++) windowSum += arr[i];
+maxSum = windowSum;
+
+// Slide the window
+for (let i = k; i < arr.length; i++) {
+  windowSum += arr[i] - arr[i - k];
+  if (windowSum > maxSum) maxSum = windowSum;
+}
+console.log(maxSum); // Output: 10
+
+2. Variable-size Window
+The window can grow or shrink depending on the problem.
+Example: Find the smallest subarray with a sum at least K.
+Step-by-step Example:
+
+Let’s use arr = [2, 1, 5, 2, 3, 2] and target sum K = 7.
+
+Start with left and right pointers at the beginning.
+Expand the window by moving right, adding numbers.
+When the sum is at least K, try to shrink the window from the left to find the smallest length.
+
+Code:
+let arr = [2, 1, 5, 2, 3, 2];
+let K = 7;
+let minLength = Infinity, windowSum = 0, left = 0;
+
+for (let right = 0; right < arr.length; right++) {
+  windowSum += arr[right];
+  while (windowSum >= K) {
+    minLength = Math.min(minLength, right - left + 1);
+    windowSum -= arr[left];
+    left++;
+  }
+}
+console.log(minLength);
+
+
+Applications
+Subarray sum problems: Find the max or min sum in a window.
+Max/min in window: Find the largest or smallest value in every window.
+String problems: Find the longest substring with certain properties.
+Visual Analogy
+Think of the sliding window as a magnifying glass moving over a row of numbers, always focusing on a group, and then sliding forward to the next group.
+
+Summary Table
+Technique	What it does	Example Use Case
+Prefix Sum	Fast range sum queries	Sum of numbers from i to j
+Sliding Window	Process subarrays efficiently	Max sum of k consecutive numbers
