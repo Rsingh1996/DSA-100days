@@ -1,0 +1,83 @@
+Common Array Patterns
+
+1. Two-Pointer Technique
+   What is it?
+   Imagine you have a row of toy cars lined up. You and your friend each start at opposite ends of the row. You both move towards each other, looking for something special, or maybe swapping cars as you go.
+
+In programming, the "two-pointer" technique means using two fingers (or variables) to look at different parts of an array at the same time.
+
+When do we use it?
+When you want to compare or process elements from both ends of an array.
+When you want to find pairs that add up to a number.
+When you want to reverse an array.
+
+Simple Example: Reversing an Array
+Let’s say you have an array: [1, 2, 3, 4, 5]
+
+Goal: Flip it so it becomes [5, 4, 3, 2, 1]
+
+How?
+
+Put one finger at the start (left), and one at the end (right).
+Swap the numbers at those fingers.
+Move both fingers towards the center.
+Stop when they meet.
+
+Code:
+
+let arr = [1, 2, 3, 4, 5];
+let left = 0;
+let right = arr.length - 1;
+while (left < right) {
+// Swap
+let temp = arr[left];
+arr[left] = arr[right];
+arr[right] = temp;
+// Move fingers
+left++; right--;
+}
+// arr is now [5, 4, 3, 2, 1]
+
+Analogy:
+It’s like swapping the first and last toy, then the second and second-last, and so on.
+
+2. Prefix Sum Technique
+   What is it?
+   Imagine you’re collecting coins one by one and keeping a running total in your notebook after each coin.
+
+In programming, a "prefix sum" is an array where each spot tells you the total of all numbers up to that point.
+
+When do we use it?
+When you want to quickly find the total of any part of an array (like, “what’s the sum from the 2nd to the 5th number?”).
+When you have to answer many sum questions fast.
+Simple Example:
+Let’s say you have coins: [2, 4, 6, 8]
+
+Prefix sum notebook:
+
+Before any coins: 0
+After 1st coin: 2
+After 2nd coin: 2 + 4 = 6
+After 3rd coin: 6 + 6 = 12
+After 4th coin: 12 + 8 = 20
+So, your prefix sum array is: [0, 2, 6, 12, 20]
+
+Code:
+
+let arr = [2, 4, 6, 8];
+let prefixSum = [0];
+
+for (let i = 0; i < arr.length; i++) {
+prefixSum.push(prefixSum[i] + arr[i]);
+}
+// prefixSum is [0, 2, 6, 12, 20]
+
+How does this help?
+If you want the sum from the 2nd to the 4th coin (4 + 6 + 8), just do:
+
+prefixSum[4] - prefixSum[1] = 20 - 2 = 18
+No need to add them one by one every time!
+
+Summary
+Two-pointer: Like two fingers moving towards each other, used for comparing or swapping from both ends.
+Prefix sum: Like keeping a running total in a notebook, used for quick sum calculations of any part of the array.
