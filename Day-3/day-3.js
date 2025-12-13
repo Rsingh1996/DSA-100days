@@ -70,4 +70,32 @@ const maximumOfSubArray = (arr, k) => {
 console.log(maximumOfSubArray([2, 1, 5, 1, 3, 2], 3));
 // time complexity - O(n), space complexity O(1)
 
-// First Negative Integer in Every Window of Size K
+// 4. First Negative Integer in Every Window of Size K
+// Given an array of integers and a number K, for every contiguous subarray/window of size K, print the first negative integer in that window. If there is no negative integer, print 0.
+// Example:
+// Input: arr = [12, -1, -7, 8, 15, 30, 16, 28], K = 3
+// Output: -1 -1 -7 0 0 0
+
+const firstNegativeIntOfSubArray = (arr, k) => {
+  const negativeIndices = [];
+  const output = [];
+  for (let i = 0; i < k; i++) {
+    if (arr[i] < 0) {
+      negativeIndices.push(i);
+    }
+  }
+  output.push(negativeIndices.length ? arr[negativeIndices[0]] : 0);
+  for (let i = k; i < arr.length; i++) {
+    if (arr[i - k] < 0) {
+      negativeIndices.shift();
+    }
+    if (arr[i] < 0) {
+      negativeIndices.push(i);
+    }
+    output.push(negativeIndices.length ? arr[negativeIndices[0]] : 0);
+  }
+  return output;
+};
+
+console.log(firstNegativeIntOfSubArray([12, -1, -7, 8, 15, 30, 16, 28], 3));
+// time complexity - O(n), space complexity O(n)
