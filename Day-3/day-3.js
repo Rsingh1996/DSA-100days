@@ -44,6 +44,30 @@ const equilibriumPoint = (arr) => {
 console.log(equilibriumPoint([1, 1, 2, 5, 2, 2]));
 // time complexity - O(n), space complexity O(1)
 
-// 2. Sliding Window Problems:
-// Maximum Sum Subarray of Size K
+// 3. Maximum Sum Subarray of Size K
+// Given an array of integers and a number K, find the maximum sum of any contiguous subarray of size K.
+// Example:
+// Input: arr = [2, 1, 5, 1, 3, 2], K = 3
+// Output: 9 (because 5 + 1 + 3 = 9)
+// 8, 7, 9, 6
+
+const maximumOfSubArray = (arr, k) => {
+  let windowSum = 0;
+  let maximumSum = 0;
+  for (let i = 0; i < k; i++) {
+    windowSum += arr[i];
+  }
+  maximumSum = windowSum;
+  for (let i = k; i < arr.length; i++) {
+    windowSum += arr[i] - arr[i - k]; //
+    if (maximumSum < windowSum) {
+      maximumSum = windowSum;
+    }
+  }
+  return maximumSum;
+};
+
+console.log(maximumOfSubArray([2, 1, 5, 1, 3, 2], 3));
+// time complexity - O(n), space complexity O(1)
+
 // First Negative Integer in Every Window of Size K
