@@ -15,23 +15,34 @@ const rangeSum = (arr, l, r) => {
 };
 
 console.log(rangeSum([1, 2, 3, 4, 5], 1, 3));
+// time complexity - O(n), space complexity O(n)
 
 // 2. Equilibrium Point
 // Given an array of integers, find an index such that the sum of elements to the left of it is equal to the sum of elements to the right of it. Return the index (0-based) if it exists, otherwise return -1.
 // Example:
-// Input: arr = [1, 3, 5, 2, 2]
-// Output: 2 (because 1 + 3 = 2 + 2)
+// Input: arr = [1, 1, 2, 5, 2, 2]
+// Output: 2 (because 1 + 1 + 1 = 2 + 2)
 
 const equilibriumPoint = (arr) => {
-  let prefix = [0];
+  let sum = 0;
   let arrayLength = arr.length;
   for (let i = 0; i < arrayLength; i++) {
-    prefix.push(prefix[i] + arr[i]);
+    sum += arr[i];
   }
-  console.log(prefix);
+  let leftSum = 0;
+  let rightSum = 0;
+  for (let i = 0; i < arrayLength; i++) {
+    rightSum = sum - leftSum - arr[i];
+    if (rightSum === leftSum) {
+      return i;
+    }
+    leftSum += arr[i];
+  }
+  return -1;
 };
 
-equilibriumPoint([1, 3, 5, 2, 2]);
+console.log(equilibriumPoint([1, 1, 2, 5, 2, 2]));
+// time complexity - O(n), space complexity O(1)
 
 // 2. Sliding Window Problems:
 // Maximum Sum Subarray of Size K
