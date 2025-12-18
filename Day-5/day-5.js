@@ -59,3 +59,14 @@ console.log(isAnagrams("listen", "silent"));
 // Example:
 // Input: text = "AABAACAADAABAABA", pattern = "AABA"
 // Output: [0, 9, 12]
+
+const patternMatchingNaive = (text, pattern) => {
+  let foundIndex = [];
+  for (let i = 0; i <= text.length - pattern.length; i++) {
+    if (text.substring(i, i + pattern.length) === pattern) {
+      foundIndex.push(i);
+    }
+  }
+  return foundIndex;
+};
+console.log(patternMatchingNaive("AABAACAADAABAABA", "AABA"));
