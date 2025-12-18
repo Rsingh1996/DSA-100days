@@ -44,6 +44,16 @@ console.log(findNonRepeatingchar("leetcode"));
 // Input: "listen", "silent"
 // Output: true
 
+const isAnagrams = (str1, str2) => {
+  if (str1.length !== str2.length) return false;
+  str1 = str1.split("").sort().join("");
+  str2 = str2.split("").sort().join("");
+  return str1 === str2;
+};
+
+console.log(isAnagrams("listen", "silent"));
+// time complexity - O(nlogn), space complexity O(1)
+
 // 4. Pattern matching (Naive)
 // Given a text string and a pattern string, check if the pattern exists in the text using the naive pattern matching approach. Return the starting index of each occurrence.
 // Example:
