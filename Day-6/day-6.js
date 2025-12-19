@@ -1,0 +1,62 @@
+// Solve these problems:
+
+// 1. Factorial of a number using recursion
+// Given a number n, write a function to calculate its factorial using recursion.
+// Example:
+// Input: n = 5
+// Output: 120 (since 5! = 5 × 4 × 3 × 2 × 1)
+
+const factorial = (n) => {
+  // n! = n*(n-1)
+  if (n === 1) return 1;
+  return n * factorial(n - 1);
+};
+console.log(factorial(5));
+// time complexity - O(n), space complexity O(n)
+
+// 2. Sum of first N natural numbers using recursion
+// Given a number n, write a function to find the sum of the first n natural numbers using recursion.
+// Example:
+// Input: n = 5
+// Output: 15 (since 1 + 2 + 3 + 4 + 5 = 15)
+
+const recursiveSum = (n) => {
+  if (n === 1) return 1;
+  return n + recursiveSum(n - 1);
+};
+console.log(recursiveSum(5));
+// time complexity - O(n), space complexity O(n)
+
+// 3. Print Fibonacci series using recursion
+// Given a number n, print the first n numbers in the Fibonacci series using recursion.
+// Example:
+// Input: n = 5
+// Output: 0 1 1 2 3
+const fibonacci = (n) => {
+  if (n === 0) return 0;
+  else if (n === 1) return 1;
+  return fibonacci(n - 1) + fibonacci(n - 2);
+};
+const fibonacciSeries = (n) => {
+  let result = [];
+  for (let i = 0; i < n; i++) {
+    result.push(fibonacci(i));
+  }
+  return result;
+};
+console.log(fibonacciSeries(5));
+// time complexity - O(2^n), space complexity O(n)
+
+// 4. Reverse a string using recursion
+// Given a string, write a function to reverse it using recursion.
+// Example:
+// Input: "hello"
+// Output: "olleh"
+
+const recursiveReverse = (str) => {
+  if (str.length === 1) return str[0];
+  return recursiveReverse(str.substring(1, str.length)) + str[0];
+};
+
+console.log(recursiveReverse("hello"));
+// time complexity - O(n), space complexity O(n)
