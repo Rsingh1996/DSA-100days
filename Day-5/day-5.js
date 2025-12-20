@@ -1,3 +1,5 @@
+// Solve these problems:
+
 // 1. Remove duplicates from a string
 // Given a string, remove all duplicate characters and return the resulting string with only the first occurrence of each character preserved.
 // Example:
@@ -70,3 +72,4 @@ const patternMatchingNaive = (text, pattern) => {
   return foundIndex;
 };
 console.log(patternMatchingNaive("AABAACAADAABAABA", "AABA"));
+// time complexity - O(n*m), space complexity O(m)

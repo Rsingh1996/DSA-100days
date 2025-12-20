@@ -28,6 +28,29 @@ console.log(subsets([1, 2, 3]));
 // Input: "abc"
 // Output: ["abc", "acb", "bac", "bca", "cab", "cba"]
 
+const permute = (str) => {
+  let result = [];
+  const backtrack = (path, used) => {
+    if (path.length === str.length) {
+      result.push(path.join(""));
+      return;
+    }
+    for (let i = 0; i < str.length; i++) {
+      if (!used[i]) {
+        used[i] = true;
+        path.push(str[i]);
+        backtrack(path, used);
+        path.pop();
+        used[i] = false;
+      }
+    }
+  };
+  backtrack([], Array(str.length).fill(false));
+  return result;
+};
+console.log(permute("abc"));
+// time complexity - O(n!), space complexity - O(n!)
+
 // 3. Rat in a Maze (basic)
 // Given a square maze (N x N) with obstacles, find all possible paths for a rat to reach from the top-left cell (0,0) to the bottom-right cell (N-1,N-1). The rat can move only in certain directions (usually down, right, up, left) and cannot visit blocked cells.
 // Example:
