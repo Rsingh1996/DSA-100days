@@ -1,0 +1,87 @@
+What is a Linked List?
+A linked list is a data structure where each element (called a node) contains:
+
+The data (value)
+A reference (pointer) to the next node in the list
+Unlike arrays, linked lists do not store elements in contiguous memory locations.
+
+Difference Between Array and Linked List
+Feature	Array	Linked List
+Memory	Contiguous block	Nodes scattered, linked by pointers
+Access	Fast (O(1) by index)	Slow (O(n), must traverse)
+Insertion/Deletion	Slow (O(n), need to shift elements)	Fast (O(1) at head/tail if pointer known)
+Size	Fixed or needs resizing	Dynamic, grows/shrinks easily
+
+Types of Linked Lists
+1. Singly Linked List
+Each node points to the next node.
+Can only move forward.
+Node structure:
+
++------+------+
+| data | next | --> next node
++------+------+
+2. Doubly Linked List
+Each node points to the next and previous node.
+Can move forward and backward.
+Node structure:
+
++------+-------+------+
+| prev | data  | next |
++------+-------+------+
+
+Key Operations
+
+Insertion
+At Head (beginning):
+Create new node.
+Point its next to current head.
+Update head to new node.
+Time: O(1)
+
+At Tail (end):
+Traverse to last node (unless you keep a tail pointer).
+Set last node’s next to new node.
+Time: O(n) (O(1) if tail pointer is maintained)
+
+Deletion
+At Head:
+Move head to next node.
+Time: O(1)
+
+At Tail or Middle:
+Traverse to node before the one to delete.
+Update its next to skip the deleted node.
+Time: O(n)
+
+Time Complexity Table
+Operation	Array	Linked List (Singly)
+Access by index	O(1)	O(n)
+Insert at head	O(n)	O(1)
+Insert at tail	O(1)*	O(n) (O(1)**)
+Delete at head	O(n)	O(1)
+Delete at tail	O(1)*	O(n)
+Search	O(n)	O(n)
+* O(1) for dynamic arrays if there is space; otherwise O(n) due to resizing.
+** O(1) for linked list if you keep a tail pointer.
+
+Diagram of a Singly Linked List
++-----+------+    +-----+------+    +-----+------+
+|  5  |  o-->|--->|  8  |  o-->|--->| 12  | null|
++-----+------+    +-----+------+    +-----+------+
+ head           node 2             node 3 (tail)
+Each box is a node.
+Each arrow is a pointer to the next node.
+The last node points to null (end of list).
+
+Notes & Review
+Difference between arrays and linked lists
+Arrays: Fast access, slow insert/delete (except at end), fixed size.
+Linked lists: Slow access, fast insert/delete at head, dynamic size.
+
+Time complexity for insertion, deletion, search
+Insertion at head: O(1)
+Insertion at tail: O(n) (O(1) with tail pointer)
+Deletion at head: O(1)
+Deletion at tail/middle: O(n)
+Search: O(n)
