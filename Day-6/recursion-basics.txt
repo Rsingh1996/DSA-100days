@@ -1,0 +1,84 @@
+What is Recursion?
+Recursion is when a function calls itself to solve a smaller part of the problem, until it reaches a simple case it can solve directly.
+
+Analogy:
+Imagine looking into two mirrors facing each other—you see an endless reflection. In programming, recursion is like a function seeing itself again and again, but we need a rule to stop the endless loop!
+
+Example:
+Calculating factorial of a number (n! = n × (n-1) × ... × 1):
+
+function factorial(n) {
+  if (n === 1) return 1;         // base case
+  return n * factorial(n - 1);   // recursive case
+}
+
+How Recursion Works (Stack Frames)
+Every time a function is called, a stack frame is created (think of it as a box with the function’s variables).
+When a recursive function calls itself, a new box is stacked on top.
+When a function finishes, its box is removed (popped) from the stack.
+Visual Example (factorial(3)):
+
+Copy code
+factorial(3)
+  → 3 * factorial(2)
+      → 2 * factorial(1)
+          → 1 (base case)
+      ← 2 * 1 = 2
+  ← 3 * 2 = 6
+The stack grows with each call, then shrinks as each call finishes.
+
+Base Case and Recursive Case :-
+Base Case:
+The simplest version of the problem, which can be solved directly (stops recursion).
+Recursive Case:
+The function calls itself with a smaller/simpler input.
+
+Example (sum of array):
+function sum(arr) {
+  if (arr.length === 0) return 0;           // base case
+  return arr[0] + sum(arr.slice(1));        // recursive case
+}
+
+
+Common Pitfalls :
+1. Missing Base Case → Infinite Recursion
+If you forget the base case, the function keeps calling itself forever, eventually causing a crash.
+
+Example:
+
+function badRecursion(n) {
+  return badRecursion(n - 1); // No base case!
+}
+
+2. Stack Overflow
+If recursion goes too deep (too many calls), you run out of stack space and get a "stack overflow" error.
+
+How to avoid:
+
+Always have a base case.
+Make sure each recursive call gets closer to the base case.
+Time Complexity in Recursion
+Depends on how many times the function calls itself and what work is done each time.
+Example 1: Factorial
+Each call does O(1) work and calls itself once: O(n) time.
+Example 2: Fibonacci (naive)
+
+function fib(n) {
+  if (n <= 1) return n;
+  return fib(n-1) + fib(n-2);
+}
+Each call makes 2 more calls: O(2^n) time (very slow for big n).
+
+--->> Draw the recursion tree or count the calls to estimate time complexity.
+
+Summary Table :-
+Concept |	Description/Example
+Recursion |	Function calls itself
+Stack frames |	Each call adds a new "box" on the stack
+Base case	Stops | recursion (e.g., n === 1)
+Recursive case |	Calls itself with smaller input
+Pitfalls |	Missing base case, stack overflow
+Time complexity |	Depends on number of calls and work per call
+
+
+
