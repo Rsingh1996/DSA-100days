@@ -13,7 +13,7 @@ printName('Rahul', 5)
 
 // timecomplexity - O(n) space complexity - O(n)
 
-// Print Name n times using recursion
+// Print numbers 1-> n using recursion
 
 const printNumbers = (n1, n2) => {
     if(n1 > n2) return;
@@ -22,6 +22,18 @@ const printNumbers = (n1, n2) => {
 }
 
 printNumbers(1, 10)
+
+// timecomplexity - O(n) space complexity - O(n)
+
+// Print numbers n -> 1 using recursion
+
+const printNumbersInDecreasingOrder = (n1, n2) => {
+    if(n1 < n2) return;
+    console.log(n1)
+    return printNumbersInDecreasingOrder(n1-1, n2);
+}
+
+printNumbersInDecreasingOrder(10, 1)
 
 // timecomplexity - O(n) space complexity - O(n)
 
