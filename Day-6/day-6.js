@@ -1,5 +1,18 @@
 // Solve these problems:
 
+// Print Name n times using recursion
+
+const printName = (name, n) => {
+    console.log(name);
+    if(n === 1) return;
+    n--;
+    return printName(name, n);
+}
+
+printName('Rahul', 5)
+
+// timecomplexity - O(n) space complexity - O(n)
+
 // 1. Factorial of a number using recursion
 // Given a number n, write a function to calculate its factorial using recursion.
 // Example:
