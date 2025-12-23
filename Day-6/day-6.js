@@ -37,6 +37,24 @@ printNumbersInDecreasingOrder(10, 1)
 
 // timecomplexity - O(n) space complexity - O(n)
 
+
+// Print numbers n1 -> n2 using recursion in any order as given
+
+const printNumbersInAnyOrder = (n1, n2) => { 
+            console.log(n1);
+    if(n1 === n2) return;
+    if(n1 < n2) {
+        return printNumbersInAnyOrder(n1+1, n2)
+    }
+    if(n1 > n2) {
+        return printNumbersInAnyOrder(n1-1, n2)
+    }
+}
+
+printNumbersInAnyOrder(1, 4);
+printNumbersInAnyOrder(5,2);
+// timecomplexity - O(n) space complexity - O(n)
+
 // 1. Factorial of a number using recursion
 // Given a number n, write a function to calculate its factorial using recursion.
 // Example:
