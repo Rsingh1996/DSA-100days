@@ -102,6 +102,16 @@ const reverseArray = (arr, i = 0) => {
 
 console.log(reverseArray([2,4,3,1,6]));
 
+// check if a string is palindrome using recursion
+
+const isPalindrome = (str, i = 0) => {
+    if(i >= str.length/2) return true;
+    if(str[i] !== str[str.length - i -1]) return false;
+    return isPalindrome(str, i+1);
+}
+console.log(isPalindrome('MADAM'))
+console.log(isPalindrome('BANANA'))
+
 // 1. Factorial of a number using recursion
 // Given a number n, write a function to calculate its factorial using recursion.
 // Example:
