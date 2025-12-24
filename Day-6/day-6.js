@@ -55,6 +55,40 @@ printNumbersInAnyOrder(1, 4);
 printNumbersInAnyOrder(5,2);
 // timecomplexity - O(n) space complexity - O(n)
 
+// reverse an array using recursion
+const reverseOfArray = (arr) => {
+    let left = 0;
+    let right = arr.length - 1;
+    reverse(left, right, arr);
+    return arr;
+}
+
+function reverse(left, right, arr) {
+    if (left >= right) return; 
+    let temp = arr[left];
+    arr[left] = arr[right];
+    arr[right] = temp;
+    reverse(left + 1, right - 1, arr);
+}
+
+console.log(reverseOfArray([2, 3, 5, 6, 7])); // [7, 6, 5, 3, 2]
+
+// time complexity - O(n)
+// space complexity - O(n)
+
+const reverseOfArrayOptimized = (arr, left = 0, right = arr.length - 1) => {
+    if (left >= right) return arr;
+    let a = arr[left];
+    arr[left] = arr[right];
+    arr[right] = a;
+    return reverseOfArrayOptimized(arr, left + 1, right - 1);
+}
+
+console.log(reverseOfArrayOptimized([2, 3, 5, 6, 7])); // [7, 6, 5, 3, 2]
+
+// time complexity - O(n)
+// space complexity - O(n)
+
 // 1. Factorial of a number using recursion
 // Given a number n, write a function to calculate its factorial using recursion.
 // Example:
