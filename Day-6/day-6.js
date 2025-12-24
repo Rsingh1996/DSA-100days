@@ -89,6 +89,19 @@ console.log(reverseOfArrayOptimized([2, 3, 5, 6, 7])); // [7, 6, 5, 3, 2]
 // time complexity - O(n)
 // space complexity - O(n)
 
+// reverse of an array using one variable
+
+const reverseArray = (arr, i = 0) => {
+        if(i >= arr.length/2) return;
+        let temp = arr[i];
+        arr[i] = arr[arr.length -i-1];
+        arr[arr.length -i-1] = temp;
+        reverseArray(arr, i+1)
+    return arr;
+}
+
+console.log(reverseArray([2,4,3,1,6]));
+
 // 1. Factorial of a number using recursion
 // Given a number n, write a function to calculate its factorial using recursion.
 // Example:
