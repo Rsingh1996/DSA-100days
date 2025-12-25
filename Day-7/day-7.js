@@ -1,5 +1,21 @@
 // Solve these problems:
 
+// Print all subsequences of array 
+const subSequences = (arr) => {
+    const print = (i, ds) => {
+        if(i >= arr.length){
+            console.log(ds);
+            return;
+        }
+        ds.push(arr[i]);
+        print(i+1, ds);
+        ds.pop(arr[i]);
+        print(i+1, ds);
+    }
+    print(0,[])
+}
+subSequences([3,1,2])
+
 // 1. Generate all subsets of a set
 // Given an array of distinct integers, return all possible subsets (the power set).
 // Example:
