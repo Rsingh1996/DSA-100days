@@ -68,6 +68,29 @@ const printOneSubsequenceWithSum = (arr , k) => {
 printOneSubsequenceWithSum([3,1,2], 3);
 // Time Complexity: O(2^n) Space Complexity: O(n)
 
+// Print count of all subsequences of array where sum is k
+const printCountOfSubsequenceWithSum = (arr , k) => {
+    let count = 0;
+    const print = (i, ds, sum) => {
+        if(i >= arr.length){ // base condition
+            if(sum === k){
+                return 1;
+            }
+            return 0;
+        }
+        ds.push(arr[i]);
+       let left = print(i+1, ds, sum+arr[i])
+        ds.pop();
+       let right = print(i+1, ds, sum)
+       return (left + right);
+    }
+    return print(0, [], 0)
+}
+
+
+console.log(printCountOfSubsequenceWithSum([3,1,2,2,1], 2 ))
+// Time Complexity: O(2^n) Space Complexity: O(n)
+
 // 1. Generate all subsets of a set
 // Given an array of distinct integers, return all possible subsets (the power set).
 // Example:
