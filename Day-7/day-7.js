@@ -70,24 +70,16 @@ printOneSubsequenceWithSum([3,1,2], 3);
 
 // Print count of all subsequences of array where sum is k
 const printCountOfSubsequenceWithSum = (arr , k) => {
-    let count = 0;
-    const print = (i, ds, sum) => {
+    const print = (i, sum) => {
         if(i >= arr.length){ // base condition
-            if(sum === k){
-                return 1;
-            }
-            return 0;
+            return sum === k ? 1 : 0;
         }
-        ds.push(arr[i]);
-       let left = print(i+1, ds, sum+arr[i])
-        ds.pop();
-       let right = print(i+1, ds, sum)
+       let left = print(i+1, sum+arr[i])
+       let right = print(i+1, sum)
        return (left + right);
     }
-    return print(0, [], 0)
+    return print(0, 0)
 }
-
-
 console.log(printCountOfSubsequenceWithSum([3,1,2,2,1], 2 ))
 // Time Complexity: O(2^n) Space Complexity: O(n)
 
