@@ -19,7 +19,7 @@ subSequences([3,1,2])
 
 
 // Print all subsequences of array where sum is k
-const subSequences = (arr , k) => {
+const printAllSubsequenceWithSumK = (arr , k) => {
     let result = [];
     const print = (i, ds, sum) => {
         if(i >= arr.length){
@@ -38,7 +38,34 @@ const subSequences = (arr , k) => {
 }
 
 
-console.log(subSequences([3,1,2], 3));
+console.log(printAllSubsequenceWithSumK([3,1,2], 3));
+// Time Complexity: O(2^n) Space Complexity: O(n)
+
+// Print any one subsequences of array where sum is k
+const printOneSubsequenceWithSum = (arr , k) => {
+    const print = (i, ds, sum) => {
+        if(i >= arr.length){ // base condition
+            if(sum === k){
+                console.log(ds);
+                return true;
+            }
+            return false;
+        }
+        ds.push(arr[i]);
+        if(print(i+1, ds, sum+arr[i]) === true){ // take 
+            return true;
+        }
+        ds.pop();
+        if(print(i+1, ds, sum) === true){ // not take
+            return true;
+        }
+        return false;
+    }
+    print(0, [], 0)
+}
+
+
+printOneSubsequenceWithSum([3,1,2], 3);
 // Time Complexity: O(2^n) Space Complexity: O(n)
 
 // 1. Generate all subsets of a set
