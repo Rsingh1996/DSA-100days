@@ -15,6 +15,31 @@ const subSequences = (arr) => {
     print(0,[])
 }
 subSequences([3,1,2])
+// Time Complexity: O(2^n) Space Complexity: O(n)
+
+
+// Print all subsequences of array where sum is k
+const subSequences = (arr , k) => {
+    let result = [];
+    const print = (i, ds, sum) => {
+        if(i >= arr.length){
+            if(sum === k) {
+                 result.push([...ds]);
+            }
+            return;
+        }
+        ds.push(arr[i]);
+        print(i+1, ds, sum + arr[i]);
+        ds.pop();
+        print(i+1, ds, sum);
+    }
+    print(0,[], 0)
+    return result;
+}
+
+
+console.log(subSequences([3,1,2], 3));
+// Time Complexity: O(2^n) Space Complexity: O(n)
 
 // 1. Generate all subsets of a set
 // Given an array of distinct integers, return all possible subsets (the power set).
@@ -36,7 +61,7 @@ const subsets = (arr) => {
   return result;
 };
 console.log(subsets([1, 2, 3]));
-// time complexity - O(n2^n), space complexity - O(2^n)
+// time complexity - O(n2^n), space complexity - O(n)
 
 // 2. Generate all permutations of a string
 // Given a string of distinct characters, return all possible permutations of the string.
