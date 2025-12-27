@@ -1,6 +1,6 @@
 // Solve these problems:
 
-// Print all subsequences of array 
+// 1. Print all subsequences of array 
 const subSequences = (arr) => {
     const print = (i, ds) => {
         if(i >= arr.length){
@@ -18,7 +18,7 @@ subSequences([3,1,2])
 // Time Complexity: O(2^n) Space Complexity: O(n)
 
 
-// Print all subsequences of array where sum is k
+// 2. Print all subsequences of array where sum is k
 const printAllSubsequenceWithSumK = (arr , k) => {
     let result = [];
     const print = (i, ds, sum) => {
@@ -41,7 +41,7 @@ const printAllSubsequenceWithSumK = (arr , k) => {
 console.log(printAllSubsequenceWithSumK([3,1,2], 3));
 // Time Complexity: O(2^n) Space Complexity: O(n)
 
-// Print any one subsequences of array where sum is k
+// 3. Print any one subsequences of array where sum is k
 const printOneSubsequenceWithSum = (arr , k) => {
     const print = (i, ds, sum) => {
         if(i >= arr.length){ // base condition
@@ -68,7 +68,7 @@ const printOneSubsequenceWithSum = (arr , k) => {
 printOneSubsequenceWithSum([3,1,2], 3);
 // Time Complexity: O(2^n) Space Complexity: O(n)
 
-// Print count of all subsequences of array where sum is k
+// 4. Print count of all subsequences of array where sum is k
 const printCountOfSubsequenceWithSum = (arr , k) => {
     const print = (i, sum) => {
         if(i >= arr.length){ // base condition
@@ -83,7 +83,7 @@ const printCountOfSubsequenceWithSum = (arr , k) => {
 console.log(printCountOfSubsequenceWithSum([3,1,2,2,1], 2 ))
 // Time Complexity: O(2^n) Space Complexity: O(n)
 
-// 1. Generate all subsets of a set
+// 5. Generate all subsets of a set
 // Given an array of distinct integers, return all possible subsets (the power set).
 // Example:
 // Input: [1,2,3]
@@ -105,7 +105,7 @@ const subsets = (arr) => {
 console.log(subsets([1, 2, 3]));
 // time complexity - O(n2^n), space complexity - O(n)
 
-// 2. Generate all permutations of a string
+// 6. Generate all permutations of a string
 // Given a string of distinct characters, return all possible permutations of the string.
 // Example:
 // Input: "abc"
@@ -134,7 +134,7 @@ const permute = (str) => {
 console.log(permute("abc"));
 // time complexity - O(n!), space complexity - O(n!)
 
-// 3. Rat in a Maze (basic)
+// 7. Rat in a Maze (basic)
 // Given a square maze (N x N) with obstacles, find all possible paths for a rat to reach from the top-left cell (0,0) to the bottom-right cell (N-1,N-1). The rat can move only in certain directions (usually down, right, up, left) and cannot visit blocked cells.
 // Example:
 // Input:
