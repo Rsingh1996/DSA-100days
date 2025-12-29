@@ -105,6 +105,45 @@ const subsets = (arr) => {
 console.log(subsets([1, 2, 3]));
 // time complexity - O(n2^n), space complexity - O(n)
 
+// Megre sort using recursion
+const merge = (arr, low, mid, high) => {
+    let result = [];
+    let left = low;
+    let right = mid+1;
+    while(left <= mid && right <= high){
+        if(arr[left] <= arr[right]){
+            result.push(arr[left])
+            left++;
+        }
+        else {
+            result.push(arr[right]);
+            right++
+        }
+    }
+    while(left <= mid){
+        result.push(arr[left])
+        left++;
+    }
+    while(right <= high){
+        result.push(arr[right]);
+        right++
+    }
+    for(let i = low; i <= high; i++ ){
+        arr[i] = result[i - low]
+    }
+}
+const mergeSort = (arr, low, high) => {
+    if(low >= high) return arr;
+    let mid = Math.floor((low + high)/2);
+    mergeSort(arr, low, mid);
+    mergeSort(arr, mid+1, high);
+    merge(arr, low, mid, high);
+}
+const arr = [3,1,2,2,1];
+mergeSort(arr, 0, arr.length -1);
+console.log(arr);
+// Time Complexity: O(nlogn) Space Complexity: O(n)
+
 // 6. Generate all permutations of a string
 // Given a string of distinct characters, return all possible permutations of the string.
 // Example:
