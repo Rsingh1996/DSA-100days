@@ -1,86 +1,87 @@
 // Solve these problems:
 
-// 1. Print all subsequences of array 
+// 1. Print all subsequences of array
 const subSequences = (arr) => {
-    const print = (i, ds) => {
-        if(i >= arr.length){
-            console.log(ds);
-            return;
-        }
-        ds.push(arr[i]);
-        print(i+1, ds);
-        ds.pop(arr[i]);
-        print(i+1, ds);
+  const print = (i, ds) => {
+    if (i >= arr.length) {
+      console.log(ds);
+      return;
     }
-    print(0,[])
-}
-subSequences([3,1,2])
+    ds.push(arr[i]);
+    print(i + 1, ds);
+    ds.pop(arr[i]);
+    print(i + 1, ds);
+  };
+  print(0, []);
+};
+subSequences([3, 1, 2]);
 // Time Complexity: O(2^n) Space Complexity: O(n)
 
-
 // 2. Print all subsequences of array where sum is k
-const printAllSubsequenceWithSumK = (arr , k) => {
-    let result = [];
-    const print = (i, ds, sum) => {
-        if(i >= arr.length){
-            if(sum === k) {
-                 result.push([...ds]);
-            }
-            return;
-        }
-        ds.push(arr[i]);
-        print(i+1, ds, sum + arr[i]);
-        ds.pop();
-        print(i+1, ds, sum);
+const printAllSubsequenceWithSumK = (arr, k) => {
+  let result = [];
+  const print = (i, ds, sum) => {
+    if (i >= arr.length) {
+      if (sum === k) {
+        result.push([...ds]);
+      }
+      return;
     }
-    print(0,[], 0)
-    return result;
-}
+    ds.push(arr[i]);
+    print(i + 1, ds, sum + arr[i]);
+    ds.pop();
+    print(i + 1, ds, sum);
+  };
+  print(0, [], 0);
+  return result;
+};
 
-
-console.log(printAllSubsequenceWithSumK([3,1,2], 3));
+console.log(printAllSubsequenceWithSumK([3, 1, 2], 3));
 // Time Complexity: O(2^n) Space Complexity: O(n)
 
 // 3. Print any one subsequences of array where sum is k
-const printOneSubsequenceWithSum = (arr , k) => {
-    const print = (i, ds, sum) => {
-        if(i >= arr.length){ // base condition
-            if(sum === k){
-                console.log(ds);
-                return true;
-            }
-            return false;
-        }
-        ds.push(arr[i]);
-        if(print(i+1, ds, sum+arr[i]) === true){ // take 
-            return true;
-        }
-        ds.pop();
-        if(print(i+1, ds, sum) === true){ // not take
-            return true;
-        }
-        return false;
+const printOneSubsequenceWithSum = (arr, k) => {
+  const print = (i, ds, sum) => {
+    if (i >= arr.length) {
+      // base condition
+      if (sum === k) {
+        console.log(ds);
+        return true;
+      }
+      return false;
     }
-    print(0, [], 0)
-}
+    ds.push(arr[i]);
+    if (print(i + 1, ds, sum + arr[i]) === true) {
+      // take
+      return true;
+    }
+    ds.pop();
+    if (print(i + 1, ds, sum) === true) {
+      // not take
+      return true;
+    }
+    return false;
+  };
+  print(0, [], 0);
+};
 
-
-printOneSubsequenceWithSum([3,1,2], 3);
+printOneSubsequenceWithSum([3, 1, 2], 3);
 // Time Complexity: O(2^n) Space Complexity: O(n)
 
 // 4. Print count of all subsequences of array where sum is k
-const printCountOfSubsequenceWithSum = (arr , k) => {
-    const print = (i, sum) => {
-        if(i >= arr.length){ // base condition
-            return sum === k ? 1 : 0;
-        }
-       let left = print(i+1, sum+arr[i])
-       let right = print(i+1, sum)
-       return (left + right);
+const printCountOfSubsequenceWithSum = (arr, k) => {
+  const print = (i, sum) => {
+    if (i >= arr.length) {
+      // base condition
+      return sum === k ? 1 : 0;
     }
-    return print(0, 0)
-}
-console.log(printCountOfSubsequenceWithSum([3,1,2,2,1], 2 ))
+    let left = print(i + 1, sum + arr[i]);
+    let right = print(i + 1, sum);
+    return left + right;
+  };
+  return print(0, 0);
+};
+console.log(printCountOfSubsequenceWithSum([3, 1, 2, 2, 1], 2));
 // Time Complexity: O(2^n) Space Complexity: O(n)
 
 // 5. Generate all subsets of a set
@@ -107,40 +108,39 @@ console.log(subsets([1, 2, 3]));
 
 // Megre sort using recursion
 const merge = (arr, low, mid, high) => {
-    let result = [];
-    let left = low;
-    let right = mid+1;
-    while(left <= mid && right <= high){
-        if(arr[left] <= arr[right]){
-            result.push(arr[left])
-            left++;
-        }
-        else {
-            result.push(arr[right]);
-            right++
-        }
+  let result = [];
+  let left = low;
+  let right = mid + 1;
+  while (left <= mid && right <= high) {
+    if (arr[left] <= arr[right]) {
+      result.push(arr[left]);
+      left++;
+    } else {
+      result.push(arr[right]);
+      right++;
     }
-    while(left <= mid){
-        result.push(arr[left])
-        left++;
-    }
-    while(right <= high){
-        result.push(arr[right]);
-        right++
-    }
-    for(let i = low; i <= high; i++ ){
-        arr[i] = result[i - low]
-    }
-}
+  }
+  while (left <= mid) {
+    result.push(arr[left]);
+    left++;
+  }
+  while (right <= high) {
+    result.push(arr[right]);
+    right++;
+  }
+  for (let i = low; i <= high; i++) {
+    arr[i] = result[i - low];
+  }
+};
 const mergeSort = (arr, low, high) => {
-    if(low >= high) return arr;
-    let mid = Math.floor((low + high)/2);
-    mergeSort(arr, low, mid);
-    mergeSort(arr, mid+1, high);
-    merge(arr, low, mid, high);
-}
-const arr = [3,1,2,2,1];
-mergeSort(arr, 0, arr.length -1);
+  if (low >= high) return arr;
+  let mid = Math.floor((low + high) / 2);
+  mergeSort(arr, low, mid);
+  mergeSort(arr, mid + 1, high);
+  merge(arr, low, mid, high);
+};
+const arr = [3, 1, 2, 2, 1];
+mergeSort(arr, 0, arr.length - 1);
 console.log(arr);
 // Time Complexity: O(nlogn) Space Complexity: O(n)
 
