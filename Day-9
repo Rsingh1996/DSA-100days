@@ -1,0 +1,63 @@
+
+/* 
+Question 1 — Two Sum
+nums = [2,5,7,11,15]
+target = 9
+
+Output: [0,1]
+Write optimal O(n) solution.
+*/
+// Only for sorted array
+const twoSumSortedArray = (arr, target) => {
+    let left = 0;
+    let right = arr.length -1;
+    while( left < right ){
+        if(arr[left] + arr[right] === target){
+            return [left,right]
+        } else if(arr[left] + arr[right] > target){
+            right--
+        } else {
+            left++
+        }
+    }
+}
+console.log(twoSumSortedArray([2,5,7,11,15],9))
+
+// Only for unsorted array
+const twoSumUnSortedArray = (arr, target) => {
+    let map = {};
+    for(let i = 0; i < arr.length; i++){
+        let complement = target - arr[i];
+        if(map[complement] !== undefined){
+            return[map[complement], i]
+        }
+        map[arr[i]] = i;
+    }
+    return null;
+}
+console.log(twoSumUnSortedArray([2,6,5,7,11,15],13))
+
+/*
+Longest substring without repeating characters
+Example:
+
+"abcabcbb" → 3
+
+Use sliding window approach.
+*/
+
+const longestSubstring = (str) => {
+    let left = 0;
+    let result = 0;
+    const letters = new Set();
+    for(let right = 0; right < str.length; right++ ){
+        while(letters.has(str[right])){
+            letters.delete(str[left]);
+            left++;
+        } 
+        letters.add(str[right]);
+        result = Math.max(result, letters.size)
+    }
+    return result;
+}
+console.log(longestSubstring('abcdabbcabca'))
