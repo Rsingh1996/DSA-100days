@@ -61,3 +61,23 @@ const longestSubstring = (str) => {
     return result;
 }
 console.log(longestSubstring('abcdabbcabca'))
+
+const longestSubstring = (str) => {
+    let left = 0;
+    let right = 0;
+    let result = 0;
+    const letters = new Set();
+    while( right < str.length ){
+        if(!letters.has(str[right])){
+            letters.add(str[right]);
+            result = Math.max(result, letters.size)
+            right++
+        } else {
+            letters.delete(str[left]);
+            left++;
+        
+        }
+    }
+    return result;
+}
+console.log(longestSubstring('abcbb'))
