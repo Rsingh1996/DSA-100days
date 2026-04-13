@@ -31,3 +31,28 @@ const groupAnagrams1 = function(strs) {
     } return Object.values(result)
 };
 console.log(groupAnagrams1(["eat","tea","tan","ate","nat","bat"]));
+
+/*
+Product of Array Except Self
+Example:
+[1,2,3,4]
+Output:
+[24,12,8,6]
+*/
+
+const productArray = (arr) => {
+    let product = [];
+    let leftProduct = 1;
+    let rightProduct = 1;
+    for(let i = 0; i < arr.length; i++ ){
+        product[i] = leftProduct;
+        leftProduct *= arr[i]
+    }
+    
+    for(let i = arr.length -1 ; i >= 0; i-- ){
+        product[i] *= rightProduct;
+        rightProduct *= arr[i]
+    }
+    return product;
+}
+console.log(productArray([1,2,3,4]));
