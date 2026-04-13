@@ -1,0 +1,33 @@
+/*
+Group Anagrams
+Example:
+["eat","tea","tan","ate","nat","bat"]
+Output:
+[["eat","tea","ate"],["tan","nat"],["bat"]]
+*/
+
+const groupAnagrams = (arr) => {
+    const map = new Map();
+    for(let word of arr){
+        let key = word.split('').sort().join('');
+        if(map.has(key)){
+            map.get(key).push(word)
+        } else {
+            map.set(key, [word])
+        }
+    }
+    
+    return Array.from(map.values())
+}
+console.log(groupAnagrams(["eat","tea","tan","ate","nat","bat"]));
+const groupAnagrams1 = function(strs) {
+    const result = {};
+    for(let str of strs){
+        let sortedStr = str.split('').sort().join('');
+        if(!result[sortedStr]){
+            result[sortedStr] = [];
+        } 
+        result[sortedStr].push(str);
+    } return Object.values(result)
+};
+console.log(groupAnagrams1(["eat","tea","tan","ate","nat","bat"]));
